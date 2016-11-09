@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:text="Register Page"
+        android:textSize="50dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/userid_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textWebEmailAddress"
+        android:hint="Enter your Username"
+        android:textColorHint="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/pwd_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Enter your Password"
+        android:textColorHint="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/pwd_edit_com"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Comfirm your Password"
+        android:textColorHint="@color/colorAccent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/reg_button"
+            android:layout_gravity="end"
+            android:text="Register"
+            android:background="@drawable/button_green"
+            style="@style/ButtonText"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/cancel_button"
+            android:layout_gravity="end"
+            android:text="Cancel"
+            android:background="@drawable/button_red"
+            style="@style/ButtonText"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="qiucw.tacoma.uw.edu.tcss445team1.authenticate.LoginFragment">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:text="Login Page"
+        android:textSize="50dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/userid_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your Username"
+        android:textColorHint="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/pwd_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your Password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/colorAccent"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/login_button"
+        android:layout_gravity="end"
+        android:text="Login"
+        android:background="@drawable/button_blue"
+        style="@style/ButtonText"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/reg_button"
+        android:layout_gravity="end"
+        android:text="Register"
+        android:background="@drawable/button_green"
+        style="@style/ButtonText"/>
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:text="Welcome to the Stickman"
+        android:textSize="50dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/start_button"
+            android:layout_gravity="center"
+            android:text="Start Game"
+            android:background="@drawable/button_purple"
+            style="@style/ButtonText"
+            android:layout_margin="50dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/score_button"
+            android:layout_gravity="center"
+            android:text="View Score"
+            android:background="@drawable/button_green"
+            style="@style/ButtonText"
+            android:layout_margin="20dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
