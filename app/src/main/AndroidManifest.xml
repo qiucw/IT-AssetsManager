@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".ScoreActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Gameover"></activity>
+        <activity android:name=".GameoverActivity"></activity>
     </application>
 
 </manifest>

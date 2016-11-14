@@ -1,7 +1,7 @@
 /**
  * Chenwei Qiu
  * 11/8/2016
- * Gameover.java
+ * GameoverActivity.java
  */
 package qiucw.tacoma.uw.edu.tcss445team1;
 
@@ -24,9 +24,9 @@ import java.net.URLEncoder;
 /**
  *  This class represents the activity for the page when game is over
  */
-public class Gameover extends AppCompatActivity {
+public class GameoverActivity extends AppCompatActivity {
 
-    private final static String CHECK_USER_URL
+    private final static String UPDATE_SCORE_URL
             = "http://cssgate.insttech.washington.edu/~_450team1/updatescore.php?";
     private String current_user;
     private int score;
@@ -63,7 +63,7 @@ public class Gameover extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Gameover.this, MainActivity.class);
+                Intent i = new Intent(GameoverActivity.this, MainActivity.class);
                 i.putExtra("username", current_user);
                 finish();
                 startActivity(i);
@@ -74,7 +74,7 @@ public class Gameover extends AppCompatActivity {
 
     //build the url to use php file
     private String buildUserURL() {
-        StringBuilder sb = new StringBuilder(CHECK_USER_URL);
+        StringBuilder sb = new StringBuilder(UPDATE_SCORE_URL);
         try {
             sb.append("username=");
             sb.append(URLEncoder.encode(current_user, "UTF-8"));
@@ -83,7 +83,7 @@ public class Gameover extends AppCompatActivity {
             sb.append(URLEncoder.encode(String.valueOf(score), "UTF-8"));
         }
         catch(Exception e) {
-            Toast.makeText(Gameover.this, "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(GameoverActivity.this, "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return sb.toString();
     }

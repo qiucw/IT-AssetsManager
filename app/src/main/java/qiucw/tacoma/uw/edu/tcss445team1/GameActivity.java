@@ -45,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
                 } catch (NumberFormatException e) {
                     Toast.makeText(GameActivity.this, "Please enter a number", Toast.LENGTH_SHORT).show();
                 }
-                Intent i = new Intent(GameActivity.this, Gameover.class);
+                Intent i = new Intent(GameActivity.this, GameoverActivity.class);
                 i.putExtra("username", current_user);
                 i.putExtra("score", score);
                 finish();
