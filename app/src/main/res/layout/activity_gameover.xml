@@ -21,11 +21,21 @@
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:textSize="20dp"
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         android:id="@+id/tv"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/play_button"
+        android:layout_gravity="center"
+        android:text="Play Again"
+        android:background="@drawable/button_purple"
+        style="@style/ButtonText"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="300dp"
@@ -35,7 +45,7 @@
         android:text="Save Score"
         android:background="@drawable/button_green"
         style="@style/ButtonText"
-        android:layout_margin="20dp"/>
+        android:layout_margin="10dp"/>
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"

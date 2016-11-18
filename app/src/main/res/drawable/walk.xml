@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/selected" android:oneshot="false">
+    <item android:drawable="@drawable/walk1" android:duration="125" />
+    <item android:drawable="@drawable/walk2" android:duration="125" />
+    <item android:drawable="@drawable/walk3" android:duration="125" />
+    <item android:drawable="@drawable/walk4" android:duration="125" />
+    <item android:drawable="@drawable/walk3" android:duration="125" />
+    <item android:drawable="@drawable/walk2" android:duration="125" />
+</animation-list>

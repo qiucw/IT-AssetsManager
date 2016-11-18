@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="90dp"
+        android:layout_height="wrap_content"
         android:text="GAME OVER"
         android:textSize="50dp"
         android:textColor="@color/colorPrimary"
@@ -17,6 +17,16 @@
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         android:id="@+id/tv"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/play_button"
+        android:layout_gravity="center"
+        android:text="Play Again"
+        android:background="@drawable/button_purple"
+        style="@style/ButtonText"
+        android:layout_margin="10dp"/>
 
     <Button
         android:layout_width="300dp"

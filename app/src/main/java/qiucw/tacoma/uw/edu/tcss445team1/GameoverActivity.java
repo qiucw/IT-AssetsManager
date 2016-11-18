@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class GameoverActivity extends AppCompatActivity {
             = "http://cssgate.insttech.washington.edu/~_450team1/updatescore.php?";
     private String current_user;
     private int score;
+    private Button save;
 
     /**
      * this method create the every component in this activity in the beginning as well as listeners
@@ -45,9 +47,20 @@ public class GameoverActivity extends AppCompatActivity {
         score = extras.getInt("score");
 
         TextView tv = (TextView) findViewById(R.id.tv);
-        tv.setText("Your Score is: "+ score +"\nWould you like to save your score? " );
+        tv.setText("Your Score is: "+ score +"\nWould you like to play again? OR Save the Score" );
 
-        Button save = (Button) findViewById(R.id.yes_button);
+        Button play = (Button) findViewById(R.id.play_button);
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(GameoverActivity.this, GameActivity.class);
+                i.putExtra("username", current_user);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        save = (Button) findViewById(R.id.yes_button);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +69,7 @@ public class GameoverActivity extends AppCompatActivity {
                 task.execute(new String[]{url.toString()});
                 Toast.makeText(v.getContext(), "Your score has been saved", Toast.LENGTH_LONG)
                         .show();
+                save.setClickable(false);
             }
         });
 

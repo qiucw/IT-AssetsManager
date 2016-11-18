@@ -92,6 +92,10 @@ public class RegisterFragment extends Fragment {
                     pwdComText.requestFocus();
                     return;
                 }
+                if (userId.length() <= 6 || pwd.length() <= 6){
+                    Toast.makeText(v.getContext(), "Username or password must have at least 6 characters", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String url = buildUserURL(v);
                 AddUserTask task = new AddUserTask();
                 task.execute(new String[]{url.toString()});

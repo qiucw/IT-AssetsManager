@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_game"
     android:layout_width="match_parent"
@@ -11,24 +12,56 @@
     tools:context="qiucw.tacoma.uw.edu.tcss445team1.GameActivity"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/background_one"
+        android:layout_width="1280dp"
+        android:layout_height="768dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg1"
+        android:layout_alignParentTop="true"/>
+
+    <ImageView
+        android:id="@+id/background_two"
+        android:layout_width="1280dp"
+        android:layout_height="768dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg1"
+        android:layout_alignParentTop="true"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="We are still working on this page. Enter a score to continue"
+        android:id="@+id/score"
+        android:text="Score : 0"
         android:textSize="20dp"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorAccent"/>
 
-    <EditText
+    <ImageView
+        android:layout_width="75px"
+        android:layout_height="345px"
+        android:id="@+id/stickman"
+        android:background="@drawable/walk"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/score"
+        android:layout_marginBottom="17dp" />
+
+    <ImageView
+        android:layout_width="150px"
+        android:layout_height="150px"
+        app:srcCompat="@drawable/p1"
+        android:id="@+id/ball"
+        android:layout_alignBottom="@+id/stickman"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="             "
+        android:textSize="75dp"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/score"/>
+        android:id="@+id/finished"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NEXT PAGE"
-        android:id="@+id/nextpage"
-        />
-
-
-</LinearLayout>
+</RelativeLayout>
