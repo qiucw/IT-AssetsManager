@@ -6,14 +6,20 @@
 package qiucw.tacoma.uw.edu.tcss445team1;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -31,26 +37,51 @@ public class ScoreActivity extends AppCompatActivity {
     private ArrayList<String> scorelist = new ArrayList<>();
     private final static String GET_SCORE_URL
             = "http://cssgate.insttech.washington.edu/~_450team1/allscore.php?";
+    private SharedPreferences prefs;
+    private JSONArray jArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-        GetScoreTask task = new GetScoreTask();
-        task.execute(new String[]{GET_SCORE_URL.toString()});
 
-        try {
-            JSONArray jArray = new JSONArray(task.get());
-            for (int i = 0; i < jArray.length(); i++) {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            GetScoreTask task = new GetScoreTask();
+            task.execute(new String[]{GET_SCORE_URL.toString()});
+
+            try {
+                jArray = new JSONArray(task.get());
+                prefs = getSharedPreferences("", Context.MODE_PRIVATE);
+                prefs.edit().putString("score", jArray.toString()).commit();
+            }
+            catch (Exception e)
+            {   Log.e("", "" + e);  }
+        } else{
+            try {
+                prefs = getSharedPreferences("", Context.MODE_PRIVATE);
+                jArray = new JSONArray(prefs.getString("score", ""));
+                Toast.makeText(ScoreActivity.this, "No network connection available. Displaying locally stored data", Toast.LENGTH_SHORT).show();
+
+            } catch (JSONException e) {
+                Log.e("", "" + e);
+            }
+        }
+
+
+        for (int i = 0; i < jArray.length(); i++) {
+            try {
                 JSONObject json_data = jArray.getJSONObject(i);
                 StringBuilder sb = new StringBuilder();
                 sb.append(json_data.getString("score"));
                 sb.append(" Points    Played by            ");
                 sb.append(json_data.getString("username"));
                 scorelist.add(sb.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
-        catch (Exception e)
-        {   Log.e("", "" + e);  }
 
         //set adapter for list view
         ListView list=(ListView)findViewById(R.id.listview);

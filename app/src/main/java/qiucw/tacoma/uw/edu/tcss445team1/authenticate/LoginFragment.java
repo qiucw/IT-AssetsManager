@@ -5,10 +5,15 @@
  */
 package qiucw.tacoma.uw.edu.tcss445team1.authenticate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.SharedPreferencesCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +40,7 @@ public class LoginFragment extends Fragment {
     private final static String CHECK_USER_URL
             = "http://cssgate.insttech.washington.edu/~_450team1/checkuser.php?";
     private EditText userIdText, pwdText;
+    private String current_user;
 
     /**
      * This is the Required empty public constructor
@@ -58,15 +64,22 @@ public class LoginFragment extends Fragment {
         userIdText = (EditText) v.findViewById(R.id.userid_edit);
         pwdText = (EditText) v.findViewById(R.id.pwd_edit);
 
+
+
         //create listener for register button
         Button bt = (Button) v.findViewById(R.id.reg_button);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new RegisterFragment())
-                        .addToBackStack(null)
-                        .commit();
+
+                if (checkNetwork()) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new RegisterFragment())
+                            .addToBackStack(null)
+                            .commit();
+                } else {
+                    Toast.makeText(getContext(), "No network connection available.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -75,50 +88,67 @@ public class LoginFragment extends Fragment {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userId = userIdText.getText().toString();
-                String pwd = pwdText.getText().toString();
+                if (checkNetwork()) {
 
-                //check if the username and password is empty
-                if (TextUtils.isEmpty(userId)) {
-                    Toast.makeText(v.getContext(), "Enter username", Toast.LENGTH_SHORT).show();
-                    userIdText.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(pwd)) {
-                    Toast.makeText(v.getContext(), "Enter password", Toast.LENGTH_SHORT).show();
-                    pwdText.requestFocus();
-                    return;
-                }
+                    String userId = userIdText.getText().toString();
+                    String pwd = pwdText.getText().toString();
 
-                CheckUserTask task = new CheckUserTask();
-                task.execute(new String[]{buildUserURL(v).toString()});
+                    //check if the username and password is empty
+                    if (TextUtils.isEmpty(userId)) {
+                        Toast.makeText(v.getContext(), "Enter username", Toast.LENGTH_SHORT).show();
+                        userIdText.requestFocus();
+                        return;
+                    }
+                    if (TextUtils.isEmpty(pwd)) {
+                        Toast.makeText(v.getContext(), "Enter password", Toast.LENGTH_SHORT).show();
+                        pwdText.requestFocus();
+                        return;
+                    }
 
-                //get the result of task
-                String result = "";
-                try {
-                     result= task.get();
-                } catch (InterruptedException e) {e.printStackTrace();
-                } catch (ExecutionException e) {e.printStackTrace();}
+                    CheckUserTask task = new CheckUserTask();
+                    task.execute(new String[]{buildUserURL(v).toString()});
 
-                if (result.equals("success")){
-                    Toast.makeText(v.getContext(), "Login successfully"
-                            , Toast.LENGTH_SHORT)
-                            .show();
-                    login();
+                    //get the result of task
+                    String result = "";
+                    try {
+                        result= task.get();
+                    } catch (InterruptedException e) {e.printStackTrace();
+                    } catch (ExecutionException e) {e.printStackTrace();}
+
+                    if (result.equals("success")){
+                        Toast.makeText(v.getContext(), "Login successfully"
+                                , Toast.LENGTH_SHORT)
+                                .show();
+                        current_user = userIdText.getText().toString();
+                        login();
+                    } else {
+                        Toast.makeText(v.getContext(), "Either username or password is wrong"
+                                , Toast.LENGTH_SHORT)
+                                .show();
+                    }
                 } else {
-                    Toast.makeText(v.getContext(), "Either username or password is wrong"
-                            , Toast.LENGTH_SHORT)
-                            .show();
+                    Toast.makeText(getContext(), "No network connection available.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         return v;
     }
 
+    public boolean checkNetwork(){
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     //go to the main activity if log in successfully
     public void login() {
         Intent i = new Intent(getActivity(), MainActivity.class);
-        i.putExtra("username", userIdText.getText().toString());
+        i.putExtra("username", current_user);
         getActivity().finish();
         startActivity(i);
     }
