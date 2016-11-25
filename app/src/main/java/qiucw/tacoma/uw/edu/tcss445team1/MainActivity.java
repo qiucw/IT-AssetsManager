@@ -5,9 +5,12 @@
  */
 package qiucw.tacoma.uw.edu.tcss445team1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +26,7 @@ import qiucw.tacoma.uw.edu.tcss445team1.authenticate.SignInActivity;
 public class MainActivity extends AppCompatActivity {
 
     private String current_user;
+    private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_logout) {
+
+            prefs = getSharedPreferences(getString(R.string.ShareP)
+                    , Context.MODE_PRIVATE);
+            prefs.edit().putBoolean("loggedin", false)
+                    .putString("username", null)
+                    .commit();
             Intent i = new Intent(this, SignInActivity.class);
             startActivity(i);
             finish();

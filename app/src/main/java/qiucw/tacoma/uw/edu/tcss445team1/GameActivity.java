@@ -13,6 +13,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -69,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
                     ball.animate().translationX(-2000).setDuration(4000);
                 }
 
-                if (count && ball.getX() + ball.getWidth() < stickman.getX() - stickman.getWidth()){
+                if (count && ball.getX() + ball.getWidth() < stickman.getX()){
                     count = !count;
                     score++;
                     scoreText.setText("Score: " + score);

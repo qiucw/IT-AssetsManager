@@ -12,8 +12,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +41,7 @@ public class LoginFragment extends Fragment {
             = "http://cssgate.insttech.washington.edu/~_450team1/checkuser.php?";
     private EditText userIdText, pwdText;
     private String current_user;
+    private SharedPreferences prefs;
 
     /**
      * This is the Required empty public constructor
@@ -57,21 +58,26 @@ public class LoginFragment extends Fragment {
      * @return
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         userIdText = (EditText) v.findViewById(R.id.userid_edit);
         pwdText = (EditText) v.findViewById(R.id.pwd_edit);
 
+        prefs = getContext().getSharedPreferences(getString(R.string.ShareP)
+                , Context.MODE_PRIVATE);
+        if (prefs.getBoolean("loggedin", true)){
+            current_user = prefs.getString("username", "");
+            login();
+        }
 
 
-        //create listener for register button
+            //create listener for register button
         Button bt = (Button) v.findViewById(R.id.reg_button);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (checkNetwork()) {
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, new RegisterFragment())
@@ -147,6 +153,10 @@ public class LoginFragment extends Fragment {
 
     //go to the main activity if log in successfully
     public void login() {
+        prefs.edit().putBoolean("loggedin", true)
+                .putString("username", current_user)
+                .commit();
+
         Intent i = new Intent(getActivity(), MainActivity.class);
         i.putExtra("username", current_user);
         getActivity().finish();

@@ -5,17 +5,13 @@
     android:id="@+id/activity_game"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="qiucw.tacoma.uw.edu.tcss445team1.GameActivity"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/background_one"
         android:layout_width="1280dp"
-        android:layout_height="768dp"
+        android:layout_height="1080dp"
         android:scaleType="fitXY"
         android:src="@drawable/bg1"
         android:layout_alignParentTop="true"/>
@@ -23,7 +19,7 @@
     <ImageView
         android:id="@+id/background_two"
         android:layout_width="1280dp"
-        android:layout_height="768dp"
+        android:layout_height="1080dp"
         android:scaleType="fitXY"
         android:src="@drawable/bg1"
         android:layout_alignParentTop="true"/>
@@ -35,15 +31,6 @@
         android:text="Score : 0"
         android:textSize="20dp"
         android:textColor="@color/colorAccent"/>
-
-    <ImageView
-        android:layout_width="75px"
-        android:layout_height="345px"
-        android:id="@+id/stickman"
-        android:background="@drawable/walk"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/score"
-        android:layout_marginBottom="17dp" />
 
     <ImageView
         android:layout_width="150px"
@@ -63,5 +50,14 @@
         android:id="@+id/finished"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="75px"
+        android:layout_height="345px"
+        android:id="@+id/stickman"
+        android:background="@drawable/walk"
+        android:layout_below="@+id/finished"
+        android:layout_toEndOf="@+id/score"
+        android:layout_marginStart="83dp" />
 
 </RelativeLayout>
