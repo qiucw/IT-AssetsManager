@@ -10,6 +10,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -84,7 +85,6 @@ public class GameActivity extends AppCompatActivity {
                     background.cancel();
                     ball.animate().cancel();
                     ball.setVisibility(View.GONE);
-
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -179,6 +179,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(touchable && final_touchable){
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.jump);
+            mp.start();
             touchable = false;
             stickmanAnimation.stop();
             stickman.animate().setInterpolator(new DecelerateInterpolator());
@@ -200,6 +202,7 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     touchable = true;
+                    mp.stop();
                 }
             }, 1000);
         }
