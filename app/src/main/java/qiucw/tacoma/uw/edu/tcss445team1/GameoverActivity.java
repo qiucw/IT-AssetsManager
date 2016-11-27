@@ -6,6 +6,7 @@
 package qiucw.tacoma.uw.edu.tcss445team1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,6 +74,14 @@ public class GameoverActivity extends AppCompatActivity {
             }
         });
 
+        Button share = (Button) findViewById(R.id.share_button);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail();
+            }
+        });
+
         Button back = (Button) findViewById(R.id.no_button);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +92,7 @@ public class GameoverActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
     }
 
@@ -100,6 +110,27 @@ public class GameoverActivity extends AppCompatActivity {
             Toast.makeText(GameoverActivity.this, "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return sb.toString();
+    }
+
+    protected void sendEmail() {
+        Log.i("Send email", "");
+        String[] TO = {""};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Score");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "I have just got " + score + " points on Stickman! Try it!");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            finish();
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(GameoverActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

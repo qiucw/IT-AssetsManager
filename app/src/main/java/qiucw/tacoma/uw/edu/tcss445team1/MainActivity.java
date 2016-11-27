@@ -5,9 +5,11 @@
  */
 package qiucw.tacoma.uw.edu.tcss445team1;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +17,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import qiucw.tacoma.uw.edu.tcss445team1.authenticate.SignInActivity;
+
+import static android.R.attr.duration;
+import static qiucw.tacoma.uw.edu.tcss445team1.R.id.ball;
+import static qiucw.tacoma.uw.edu.tcss445team1.R.id.stickman;
 
 
 /**
@@ -27,12 +35,33 @@ public class MainActivity extends AppCompatActivity {
 
     private String current_user;
     private SharedPreferences prefs;
+    private ImageView stickman;
+    private AnimationDrawable stickmanAnimation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle extras = getIntent().getExtras();
         current_user = extras.getString("username");
+
+
+        stickman = (ImageView) findViewById(R.id.stickman);
+        stickman.setBackgroundResource(R.drawable.walk);
+        stickmanAnimation = (AnimationDrawable) stickman.getBackground();
+        stickmanAnimation.start();
+        stickman.animate().translationX(1500).setDuration(10);
+        stickman.animate().setInterpolator(new LinearInterpolator());
+        stickman.animate().setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+             @Override
+             public void onAnimationUpdate(ValueAnimator animation) {
+
+                 if (stickman.getX() > 1500) {
+                     stickman.setX(75);
+                     stickman.animate().translationX(1500).setDuration(4000);
+                 }
+             }
+         });
+
         Button startButton = (Button) findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
