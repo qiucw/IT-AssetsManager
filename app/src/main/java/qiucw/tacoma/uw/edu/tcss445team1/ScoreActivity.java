@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class ScoreActivity extends AppCompatActivity {
 
-    private ArrayList<String> scorelist = new ArrayList<>();
+    private ScoreList scorelist;
     private final static String GET_SCORE_URL
             = "http://cssgate.insttech.washington.edu/~_450team1/allscore.php?";
     private SharedPreferences prefs;
@@ -69,7 +69,7 @@ public class ScoreActivity extends AppCompatActivity {
             }
         }
 
-
+        scorelist = new ScoreList();
         for (int i = 0; i < jArray.length(); i++) {
             try {
                 JSONObject json_data = jArray.getJSONObject(i);
@@ -86,7 +86,7 @@ public class ScoreActivity extends AppCompatActivity {
         //set adapter for list view
         ListView list=(ListView)findViewById(R.id.listview);
         ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, scorelist);
+                new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, scorelist.getArrayList());
         list.setAdapter(arrayAdapter);
         list.setDivider(null);
     }

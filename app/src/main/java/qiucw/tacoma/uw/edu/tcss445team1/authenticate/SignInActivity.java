@@ -24,7 +24,7 @@ public class SignInActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, new LoginFragment() )
+                .add(R.id.fragment_container, new LoginFragment())
                 .commit();
     }
 }

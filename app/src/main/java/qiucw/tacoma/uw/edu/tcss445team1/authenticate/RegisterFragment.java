@@ -33,6 +33,7 @@ public class RegisterFragment extends Fragment {
     private final static String COURSE_ADD_URL
             = "http://cssgate.insttech.washington.edu/~_450team1/adduser.php?";
     private EditText userIdText, pwdText, pwdComText;
+    private Account account;
 
     /**
      * This is the Required empty public constructor
@@ -72,16 +73,8 @@ public class RegisterFragment extends Fragment {
                 String userId = userIdText.getText().toString();
                 String pwd = pwdText.getText().toString();
                 String pwdCom = pwdComText.getText().toString();
-                if (TextUtils.isEmpty(userId)) {
-                    Toast.makeText(v.getContext(), "Please enter username", Toast.LENGTH_SHORT).show();
-                    userIdText.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(pwd)) {
-                    Toast.makeText(v.getContext(), "Please enter password", Toast.LENGTH_SHORT).show();
-                    pwdText.requestFocus();
-                    return;
-                }
+                account = new Account(userId, pwd);
+
                 if (TextUtils.isEmpty(pwdCom)) {
                     Toast.makeText(v.getContext(), "Please confirm your password", Toast.LENGTH_SHORT).show();
                     pwdComText.requestFocus();
@@ -92,10 +85,7 @@ public class RegisterFragment extends Fragment {
                     pwdComText.requestFocus();
                     return;
                 }
-                if (userId.length() <= 6 || pwd.length() <= 6){
-                    Toast.makeText(v.getContext(), "Username or password must have at least 6 characters", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+
                 String url = buildUserURL(v);
                 AddUserTask task = new AddUserTask();
                 task.execute(new String[]{url.toString()});
@@ -111,11 +101,11 @@ public class RegisterFragment extends Fragment {
         StringBuilder sb = new StringBuilder(COURSE_ADD_URL);
 
         try {
-            String username = userIdText.getText().toString();
+            String username = account.getUsername();
             sb.append("username=");
             sb.append(URLEncoder.encode(username, "UTF-8"));
 
-            String password = pwdText.getText().toString();
+            String password = account.getPassword();
             sb.append("&password=");
             sb.append(URLEncoder.encode(password, "UTF-8"));
 
