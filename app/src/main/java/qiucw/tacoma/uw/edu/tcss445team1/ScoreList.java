@@ -21,9 +21,4 @@ public class ScoreList {
     public ArrayList<String> getArrayList() {
         return arrayList;
     }
-
-    @Override
-    public String toString() {
-        return arrayList.toString();
-    }
 }
