@@ -73,7 +73,13 @@ public class RegisterFragment extends Fragment {
                 String userId = userIdText.getText().toString();
                 String pwd = pwdText.getText().toString();
                 String pwdCom = pwdComText.getText().toString();
-                account = new Account(userId, pwd);
+                try {
+                    account = new Account(userId, pwd);
+                }catch (IllegalArgumentException e){
+                    Toast.makeText(v.getContext(), e.getMessage(), Toast.LENGTH_LONG)
+                            .show();
+                    return;
+                }
 
                 if (TextUtils.isEmpty(pwdCom)) {
                     Toast.makeText(v.getContext(), "Please confirm your password", Toast.LENGTH_SHORT).show();
@@ -95,7 +101,10 @@ public class RegisterFragment extends Fragment {
         return v;
     }
 
-    //build the url to use php file
+    /**
+     * build the url that you want to execute
+     * @return the url you build
+     */
     private String buildUserURL(View v) {
 
         StringBuilder sb = new StringBuilder(COURSE_ADD_URL);
@@ -117,7 +126,9 @@ public class RegisterFragment extends Fragment {
         return sb.toString();
     }
 
-    //execute the url
+    /**
+     * the class that could execute the url
+     */
     private class AddUserTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -147,7 +158,7 @@ public class RegisterFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
-                Toast.makeText(getActivity().getApplicationContext(), "User successfully added!"
+                Toast.makeText(getActivity().getApplicationContext(), "Your account has been created"
                         , Toast.LENGTH_LONG)
                         .show();
                 getActivity().getSupportFragmentManager().popBackStackImmediate();

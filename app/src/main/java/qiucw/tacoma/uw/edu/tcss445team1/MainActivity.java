@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private ImageView stickman;
     private AnimationDrawable stickmanAnimation;
+
+    /**
+     * this method create the every component in this activity in the beginning as well as listeners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //create the option menu
+    /**
+     * create the option menu
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -94,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * create the action for the option menu
      * @param item
-     * @return
+     * @return true if any one is selected
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -39,6 +39,11 @@ public class ScoreActivity extends AppCompatActivity {
             = "http://cssgate.insttech.washington.edu/~_450team1/allscore.php?";
     private SharedPreferences prefs;
     private JSONArray jArray;
+
+    /**
+     * this method create the every component in this activity in the beginning as well as listeners
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +96,10 @@ public class ScoreActivity extends AppCompatActivity {
         list.setDivider(null);
     }
 
-    //execute the url
+
+    /**
+     * the class that could execute the url
+     */
     private class GetScoreTask extends AsyncTask<String, Void, String> {
 
         @Override

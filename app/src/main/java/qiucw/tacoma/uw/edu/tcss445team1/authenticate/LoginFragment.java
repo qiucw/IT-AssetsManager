@@ -73,7 +73,7 @@ public class LoginFragment extends Fragment {
         }
 
 
-            //create listener for register button
+        //create listener for register button
         Button bt = (Button) v.findViewById(R.id.reg_button);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,7 @@ public class LoginFragment extends Fragment {
                     }
 
                     CheckUserTask task = new CheckUserTask();
-                    task.execute(new String[]{buildUserURL(v).toString()});
+                    task.execute(new String[]{buildUserURL().toString()});
 
                     //get the result of task
                     String result = "";
@@ -140,6 +140,10 @@ public class LoginFragment extends Fragment {
         return v;
     }
 
+    /**
+     * check the network
+     * @return true if the network is connected
+     */
     public boolean checkNetwork(){
         ConnectivityManager connMgr = (ConnectivityManager)
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -151,7 +155,9 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    //go to the main activity if log in successfully
+    /**
+     * login method where you can go to the main activity if log in successfully
+     */
     public void login() {
         prefs.edit().putBoolean("loggedin", true)
                 .putString("username", current_user)
@@ -163,8 +169,11 @@ public class LoginFragment extends Fragment {
         startActivity(i);
     }
 
-    //build the url to use php file
-    private String buildUserURL(View v) {
+    /**
+     * build the url that you want to execute
+     * @return the url you build
+     */
+    private String buildUserURL() {
         StringBuilder sb = new StringBuilder(CHECK_USER_URL);
         try {
             String username = userIdText.getText().toString();
@@ -176,12 +185,14 @@ public class LoginFragment extends Fragment {
             sb.append(URLEncoder.encode(password, "UTF-8"));
         }
         catch(Exception e) {
-            Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return sb.toString();
     }
 
-    //execute the url
+    /**
+     * the class that could execute the url
+     */
     private class CheckUserTask extends AsyncTask<String, Void, String> {
 
         @Override

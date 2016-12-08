@@ -96,7 +96,10 @@ public class GameoverActivity extends AppCompatActivity {
 
     }
 
-    //build the url to use php file
+    /**
+     * build the url that you want to execute
+     * @return the url you build
+     */
     private String buildUserURL() {
         StringBuilder sb = new StringBuilder(UPDATE_SCORE_URL);
         try {
@@ -112,6 +115,9 @@ public class GameoverActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    /**
+     * go the email where you can send the email
+     */
     protected void sendEmail() {
         Log.i("Send email", "");
         String[] TO = {""};
@@ -127,14 +133,15 @@ public class GameoverActivity extends AppCompatActivity {
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(GameoverActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
     }
 
 
-    //execute the url
+    /**
+     * the class that could execute the url
+     */
     private class UpdateScoreTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {

@@ -176,6 +176,11 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * this is the touch listener
+     * @param event
+     * @return true
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(touchable && final_touchable){
