@@ -63,7 +63,7 @@ public class GameoverActivity extends AppCompatActivity {
             }
         });
 
-        save = (Button) findViewById(R.id.yes_button);
+        save = (Button) findViewById(R.id.save_button);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +84,7 @@ public class GameoverActivity extends AppCompatActivity {
             }
         });
 
-        Button back = (Button) findViewById(R.id.no_button);
+        Button back = (Button) findViewById(R.id.back_button);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

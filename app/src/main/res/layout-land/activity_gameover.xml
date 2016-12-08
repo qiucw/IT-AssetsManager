@@ -31,7 +31,7 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/yes_button"
+        android:id="@+id/save_button"
         android:layout_gravity="center"
         android:text="Save Score"
         android:background="@drawable/button_green"
@@ -49,7 +49,7 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/no_button"
+        android:id="@+id/back_button"
         android:layout_gravity="center"
         android:text="Back to Main Menu"
         android:background="@drawable/button_red"
