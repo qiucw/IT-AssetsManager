@@ -2,6 +2,8 @@ package qiucw.tacoma.uw.edu.tcss445team1.authenticate;
 
 /**
  * This is a account class including the username and password
+ * @author Chenwei Qiu
+ * @version 1.0
  */
 
 public class Account {

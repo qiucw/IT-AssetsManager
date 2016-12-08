@@ -25,6 +25,8 @@ import android.widget.TextView;
 
 /**
  *  This class represents the game page
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 public class GameActivity extends AppCompatActivity {
     private String current_user;

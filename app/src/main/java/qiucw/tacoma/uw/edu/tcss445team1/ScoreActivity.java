@@ -31,6 +31,8 @@ import java.util.ArrayList;
 
 /**
  *  This class represents the activity for the score page
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 public class ScoreActivity extends AppCompatActivity {
 

@@ -12,6 +12,8 @@ import qiucw.tacoma.uw.edu.tcss445team1.R;
 
 /**
  *  This class represents the activity for login fragment and register fragment
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 public class SignInActivity extends AppCompatActivity{
 

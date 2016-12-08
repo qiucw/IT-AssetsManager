@@ -30,6 +30,8 @@ import static qiucw.tacoma.uw.edu.tcss445team1.R.id.stickman;
 
 /**
  *  This class represents the activity for the main page
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 public class MainActivity extends AppCompatActivity {
 

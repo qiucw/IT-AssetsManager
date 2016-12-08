@@ -27,6 +27,8 @@ import qiucw.tacoma.uw.edu.tcss445team1.R;
 
 /**
  *  This class represents the fragment which is used for user to register
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 public class RegisterFragment extends Fragment {
 

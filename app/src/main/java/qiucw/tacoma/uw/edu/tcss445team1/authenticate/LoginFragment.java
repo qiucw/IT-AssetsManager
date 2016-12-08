@@ -34,6 +34,7 @@ import qiucw.tacoma.uw.edu.tcss445team1.R;
 
 /**
  *  This class represents the fragment which is used for user to log in
+ * @version 1.0
  */
 public class LoginFragment extends Fragment {
 

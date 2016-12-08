@@ -25,6 +25,8 @@ import java.net.URLEncoder;
 
 /**
  *  This class represents the activity for the page when game is over
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 public class GameoverActivity extends AppCompatActivity {
 

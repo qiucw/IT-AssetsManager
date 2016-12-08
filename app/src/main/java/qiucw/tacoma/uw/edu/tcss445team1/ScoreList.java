@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Scorelist for the score in ScoreActivity
+ *  @author Chenwei Qiu
+ * @version 1.0
  */
 
 public class ScoreList {
